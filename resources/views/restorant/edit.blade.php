@@ -36,6 +36,16 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+                        <div class="form-group">
+                            <label for="code_alternatif">Kode alternatif</label>
+                            <input type="text" class="form-control @error('code_alternatif') is-invalid @enderror" id="code_alternatif" name="code_alternatif" value="{{ old('code_alternatif', $restorant->code_alternatif) }}" required>
+                            @error('code_alternatif')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                </div>
+
+
                         <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                         <a href="{{ route('restorant.index') }}" class="btn btn-secondary">Batal</a>
                     </form>

@@ -5,61 +5,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+        }
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: linear-gradient(180deg, #388da8, #AFD1DC);
+            padding-top: 20px;
+            color: white;
+        }
+
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        }
+        .sidebar a:hover {
+            background-color: #ffffff;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            width: 100%;
+        }
+        .dropdown-menu a {
+            color: black;
+        }
+        .navbar-brand-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .navbar-brand-icon i {
+            margin-right: 10px;
+            font-size: 80px;
+            
+        }
+
+    </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-dark bg-primary">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">SPK TOPSIS</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('restorant/') }}">Daftar Restorant</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('kriteria/') }}">Daftar Kriteria</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Perhitungan</a>
-                        </li>
-                    </ul>
-                </div>
+    <div class="sidebar">
+            <div class="navbar-brand-icon">
+                <i class="fas fa-user"></i>
             </div>
-            <div>
-            <a id="navbarDropdown" class="nav-link text-dark dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-              logout
+            <p style="text-align: center;">{{ Auth::user()->name }}</p>
+            <a class="navbar-brand" href="{{ url('/welcome') }}">PilRes</a>
+            <a class="nav-link" href="{{ url('restorant/') }}">Daftar Alternatif</a>
+            <a class="nav-link" href="{{ url('kriteria/') }}">Daftar Kriteria</a>
+            <a class="nav-link" href="{{ url('penilaian/') }}">Penilain</a>
+            <a class="nav-link" href="{{ route('perhitungan.topsis') }}">Perhitungan</a>
+            <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
             </a>
 
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <p class="dropdown-item">{{ Auth::user()->name }}</p>
-                <a class="dropdown-item" href="{{ route('logout') }}"
-                   onclick="event.preventDefault();
-                                 document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
-                </a>
 
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
+        <div class="mt-auto">
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+        </div>
+    </div>
 
-                <a href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
-                        Logout
-                </a>
-            </div>
-            </div>
-        </nav>
-    </header>
+    <div class="main-content">
+        <main class="py-4">
+            @yield('content')
+        </main>
+    </div>
 
-    <main class="py-4">
-        @yield('content')
-    </main>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

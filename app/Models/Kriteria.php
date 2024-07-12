@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kriteria extends Model
 {
-    protected $fillable = ['nama', 'kategori', 'bobot'];
+    protected $fillable = ['code_kriteria','nama', 'kategori', 'bobot'];
 }

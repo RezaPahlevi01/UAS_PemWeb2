@@ -30,6 +30,7 @@ class KriteriaController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
+            'code_kriteria' =>'required|string|max:5',
             'nama' => 'required|string|max:255',
             'kategori' => 'required|string|max:255',
             'bobot' => 'required|numeric',

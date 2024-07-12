@@ -12,6 +12,6 @@ class Restorant extends Model
     protected $table = 'restorants';
 
     protected $fillable = [
-        'nama', 'harga', 'lokasi', 'jam_operasional', 'fasilitas', 'kebersihan', 'luas'
+        'nama', 'code_alternatif'
     ];
 }

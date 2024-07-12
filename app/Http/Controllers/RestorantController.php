@@ -37,6 +37,7 @@ class RestorantController extends Controller
     {
         $request->validate([
             'nama' => 'required',
+            'code_alternatif' => 'required'
             
         ]);
 
@@ -63,12 +64,16 @@ class RestorantController extends Controller
     {
         $request->validate([
             'nama' => 'required',
+            'code_alternatif' => 'required'
+
+
             
         ]);
 
         $restorant = Restorant::findOrFail($id);
 
         $restorant->nama = $request->input('nama');
+
         
     
     // Simpan perubahan

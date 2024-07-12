@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('restorants', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama');
+        Schema::create('password_reset', function (Blueprint $table) {
+            $table->string('email')->index();
+            $table->string('token');
             $table->timestamps();
         });
     }
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('restorants');
+        Schema::dropIfExists('password_reset');
     }
 };
